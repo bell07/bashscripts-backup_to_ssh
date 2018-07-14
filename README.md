@@ -54,6 +54,9 @@ BACKUPDIR=/mnt/usbdisk/backup/my_client
 # Your user on remote host
 BACKUPUSER=root
 
+# Backups retain count
+BACKUPCOUNT=7
+
 ## Additional parameters for rsync command
 #RSYNC_PARAM="-zc"  # Compress + full check by checksum
 RSYNC_PARAM="-z"    # Compress + default quick check
@@ -74,6 +77,6 @@ To avoid password request I recomend to set up SSH-Keys authentification
 The script is designed to run from client on cron.daily basis (using anacron)
 
 Result on Server:
-On server you get in the $BACKUPDIR/backup_[1-6] subdirectories with hard-linked full backups like rsnapshot does up to 6 copies. 
+On server you get the $BACKUPDIR/backup_* subdirectories with hard-linked full backups like rsnapshot does it, up to BACKUPCOUNT copies.
 
 For newbies: Each of the dirs contains all files, but unchanged files consume the space once because of hardlink.

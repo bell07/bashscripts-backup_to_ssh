@@ -7,7 +7,7 @@ fi
 cd "$BACKUPDIR"
 
 # Show statistics
-du -sh --time backup_[1-9]
+du -sh --time backup_[0-9]*
 
 # Remove lock file for next backup
 rm "$BACKUPSTATEFILE"

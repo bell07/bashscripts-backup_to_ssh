@@ -20,15 +20,15 @@ cd "$BACKUPDIR"
 
 # Step 1: delete last backup (6)
 if [ $CURRENTSTEP -eq 0 ]; then
-	if [ -d backup_6 ]; then
-		rm -Rf backup_6
+	if [ -d backup_$BACKUPCOUNT ]; then
+		rm -Rf backup_$BACKUPCOUNT
 	fi
 	set_next_step
 fi
 
-# Step 1-5: move directories 5-1 to 6-2
-for move in 5 4 3 2 1; do
-	if [ $(($move+$CURRENTSTEP)) -eq 6 ]; then
+# Step 1-penultimate : move directories 6-1 to 7-2 (if BACKUPCOUNT=7)
+for move in $(seq $(($BACKUPCOUNT-1)) -1 1); do
+	if [ $(($move+$CURRENTSTEP)) -eq $BACKUPCOUNT ]; then
 		if [ -d backup_$move ]; then
 			mv backup_$move backup_$(($move + 1))
 		fi
@@ -36,8 +36,8 @@ for move in 5 4 3 2 1; do
 	fi
 done
 
-# Step 6: Hardlink-Copy 2 to 1 
-if [ $CURRENTSTEP -eq 6 ]; then
+# Last Step: Hardlink-Copy 2 to 1
+if [ $CURRENTSTEP -eq $BACKUPCOUNT ]; then
 	if [ -d backup_2 ]; then
 		cp -al backup_2 backup_1
 	else

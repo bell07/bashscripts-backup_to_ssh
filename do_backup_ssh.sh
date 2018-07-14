@@ -24,6 +24,11 @@ if [ -z "$BACKUPSTATEFILE" ]; then
 	exit 1
 fi
 
+if [ -z "$BACKUPCOUNT" ]; then
+	echo "BACKUPCOUNT missed in config file"
+	exit 1
+fi
+
 if [ -z "$BACKUP_DIRS_LIST" ]; then
 	echo "BACKUP_DIRS_LIST missed in config file"
 	exit 1
