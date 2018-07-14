@@ -19,8 +19,8 @@ if [ -z "$BACKUPUSER" ]; then
 	exit 1
 fi
 
-if [ -z "$BACKUPLOCKFILE" ]; then
-	echo "BACKUPLOCKFILE missed in config file"
+if [ -z "$BACKUPSTATEFILE" ]; then
+	echo "BACKUPSTATEFILE missed in config file"
 	exit 1
 fi
 

@@ -10,7 +10,7 @@ cd "$BACKUPDIR"
 du -sh --time backup_[1-9]
 
 # Remove lock file for next backup
-rm "$BACKUPLOCKFILE"
+rm "$BACKUPSTATEFILE"
 
 # All steps done!
 exit 0

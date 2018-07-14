@@ -10,6 +10,9 @@ BACKUPDIR=/mnt/usbdisk/backup/my_client
 # Your user on remote host
 BACKUPUSER=root
 
+# Statefile on server to resume processing if interrupted
+BACKUPSTATEFILE="$BACKUPDIR"/"backup_state.tmp"
+
 ## Additional parameters for rsync command
 #RSYNC_PARAM="-zc"  # Compress + full check by checksum
 RSYNC_PARAM="-z"    # Compress + default quick check

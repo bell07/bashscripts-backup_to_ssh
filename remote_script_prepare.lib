@@ -2,7 +2,7 @@ CURRENTSTEP=0
 
 set_next_step() {
 	CURRENTSTEP=$(($CURRENTSTEP + 1))
-	echo $CURRENTSTEP > "$BACKUPLOCKFILE"
+	echo $CURRENTSTEP > "$BACKUPSTATEFILE"
 }
 
 if [ ! -d "$BACKUPDIR" ]; then
@@ -10,8 +10,8 @@ if [ ! -d "$BACKUPDIR" ]; then
 	exit 99
 fi
 
-if [ -f "$BACKUPLOCKFILE" ]; then
-	CURRENTSTEP=$(cat "$BACKUPLOCKFILE")
+if [ -f "$BACKUPSTATEFILE" ]; then
+	CURRENTSTEP=$(cat "$BACKUPSTATEFILE")
 	echo "Resuming last backup at step $CURRENTSTEP"
 fi
 
