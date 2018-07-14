@@ -1,0 +1,31 @@
+# Usual rsync exclude file
+
+# Exclude by regular expression
+*/[Cc]ache/*
+*/[.][Cc]ache/*
+
+*/[Tt]emp/*
+*/[.][Tt]emp/*
+
+*/[Tt]mp/*
+*/[.][Tt]mp/*
+
+*/[Tt]humbnails/*
+*/[.][Tt]humbnails/*
+
+*/[Tt]rash/*
+*/[.][Tt]rash/*
+
+*/[Ll]ogs/*
+*/[.][Llt]ogs/*
+
+# By file
+/home/*/.config/syncthing/
+
+/home/*/.minetest/debug.txt
+/home/*/Downloads
+
+/var/lib/mlocate
+/var/lib/systemd/coredump
+
+

@@ -1,0 +1,25 @@
+# copy this file to backup.conf and adjust your setting
+# The syntax is your shell
+
+# Backup is pushed to this host
+BACKUPHOST=backup_host
+
+# Remote dir on remote host the backup is created
+BACKUPDIR=/mnt/usbdisk/backup/my_client
+
+# Your user on remote host
+BACKUPUSER=root
+
+## Additional parameters for rsync command
+#RSYNC_PARAM="-zc"  # Compress + full check by checksum
+RSYNC_PARAM="-z"    # Compress + default quick check
+
+## Backup local dirs are backed up
+## Note, some subdirs could be excluded in exclude file
+BACKUP_DIRS_LIST=(
+	/boot
+	/etc
+	/home
+	/usr/local
+	/var/lib
+)

@@ -1,0 +1,50 @@
+CURRENTSTEP=0
+
+set_next_step() {
+	CURRENTSTEP=$(($CURRENTSTEP + 1))
+	echo $CURRENTSTEP > "$BACKUPLOCKFILE"
+}
+
+if [ ! -d "$BACKUPDIR" ]; then
+	echo "Backup directory $BACKUPDIR not found"
+	exit 99
+fi
+
+if [ -f "$BACKUPLOCKFILE" ]; then
+	CURRENTSTEP=$(cat "$BACKUPLOCKFILE")
+	echo "Resuming last backup at step $CURRENTSTEP"
+fi
+
+
+cd "$BACKUPDIR"
+
+# Step 1: delete last backup (6)
+if [ $CURRENTSTEP -eq 0 ]; then
+	if [ -d backup_6 ]; then
+		rm -Rf backup_6
+	fi
+	set_next_step
+fi
+
+# Step 1-5: move directories 5-1 to 6-2
+for move in 5 4 3 2 1; do
+	if [ $(($move+$CURRENTSTEP)) -eq 6 ]; then
+		if [ -d backup_$move ]; then
+			mv backup_$move backup_$(($move + 1))
+		fi
+		set_next_step
+	fi
+done
+
+# Step 6: Hardlink-Copy 2 to 1 
+if [ $CURRENTSTEP -eq 6 ]; then
+	if [ -d backup_2 ]; then
+		cp -al backup_2 backup_1
+	else
+		mkdir backup_1
+	fi
+	set_next_step
+fi
+
+# All steps done!
+exit 0

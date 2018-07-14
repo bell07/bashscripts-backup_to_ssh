@@ -1,0 +1,16 @@
+# Simple check the backup dir still exists
+if [ ! -d "$BACKUPDIR" ]; then
+	echo "Backup directory $BACKUPDIR not found"
+	exit 99
+fi
+
+cd "$BACKUPDIR"
+
+# Show statistics
+du -sh --time backup_[1-9]
+
+# Remove lock file for next backup
+rm "$BACKUPLOCKFILE"
+
+# All steps done!
+exit 0
