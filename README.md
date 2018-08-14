@@ -42,34 +42,36 @@ BACKUP_DIRS_LIST=(
 
 ## setup the backup.exclude (see backup.exclude.example)
 ```
-# copy this file to backup.conf and adjust your setting
-# The syntax is your shell
+# Usual rsync exclude file
 
-# Backup is pushed to this host
-BACKUPHOST=backup_host
+# Exclude by regular expression
+*/[Cc]ache/*
+*/[.][Cc]ache/*
 
-# Remote dir on remote host the backup is created
-BACKUPDIR=/mnt/usbdisk/backup/my_client
+*/[Tt]emp/*
+*/[.][Tt]emp/*
 
-# Your user on remote host
-BACKUPUSER=root
+*/[Tt]mp/*
+*/[.][Tt]mp/*
 
-# Backups retain count
-BACKUPCOUNT=7
+*/[Tt]humbnails/*
+*/[.][Tt]humbnails/*
 
-## Additional parameters for rsync command
-#RSYNC_PARAM="-zc"  # Compress + full check by checksum
-RSYNC_PARAM="-z"    # Compress + default quick check
+*/[Tt]rash/*
+*/[.][Tt]rash/*
 
-## Backup local dirs are backed up
-## Note, some subdirs could be excluded in exclude file
-BACKUP_DIRS_LIST=(
-	/boot
-	/etc
-	/home
-	/usr/local
-	/var/lib
-)
+*/[Ll]ogs/*
+*/[.][Llt]ogs/*
+
+# By file
+/home/*/.config/syncthing/
+
+/home/*/.minetest/debug.txt
+/home/*/Downloads
+
+/var/lib/mlocate
+/var/lib/systemd/coredump
+
 ```
 
 ## Call the do_backup_ssh.sh script
