@@ -19,9 +19,11 @@
 */[Ll]ogs/*
 */[.][Llt]ogs/*
 
-# By file
-/home/*/.config/syncthing/
+*/ccache/*
 
+# By file
+/home/*/.ccache/
+/home/*/.config/syncthing/
 /home/*/.minetest/debug.txt
 /home/*/Downloads
 
