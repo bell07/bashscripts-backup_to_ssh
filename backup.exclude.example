@@ -26,6 +26,7 @@
 /home/*/.config/syncthing/
 /home/*/.minetest/debug.txt
 /home/*/Downloads
+/home/*/.gvfs
 
 /var/lib/mlocate
 /var/lib/systemd/coredump
