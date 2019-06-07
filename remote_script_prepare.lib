@@ -1,7 +1,7 @@
 CURRENTSTEP=0
 
 set_next_step() {
-	CURRENTSTEP=$(($CURRENTSTEP + 1))
+	CURRENTSTEP=$((CURRENTSTEP + 1))
 	echo $CURRENTSTEP > "$BACKUPSTATEFILE"
 }
 
@@ -16,32 +16,36 @@ if [ -f "$BACKUPSTATEFILE" ]; then
 fi
 
 
-cd "$BACKUPDIR"
+cd "$BACKUPDIR" || exit 1
 
 # Step 1: delete last backup (6)
-if [ $CURRENTSTEP -eq 0 ]; then
-	if [ -d backup_$BACKUPCOUNT ]; then
-		rm -Rf backup_$BACKUPCOUNT
+if [ "$CURRENTSTEP" -eq 0 ]; then
+	if [ -d backup_"$BACKUPCOUNT" ]; then
+		rm -Rf backup_"$BACKUPCOUNT"
 	fi
 	set_next_step
 fi
 
 # Step 1-penultimate : move directories 6-1 to 7-2 (if BACKUPCOUNT=7)
-for move in $(seq $(($BACKUPCOUNT-1)) -1 1); do
-	if [ $(($move+$CURRENTSTEP)) -eq $BACKUPCOUNT ]; then
-		if [ -d backup_$move ]; then
-			mv backup_$move backup_$(($move + 1))
+if [ "$CURRENTSTEP" -lt "$BACKUPCOUNT" ]; then
+	for move in $(seq $((BACKUPCOUNT-CURRENTSTEP)) -1 1); do
+		if [ $((move+CURRENTSTEP)) -eq "$BACKUPCOUNT" ]; then
+			if [ -d "backup_$move" ]; then
+				mv "backup_$move" backup_$((move + 1))
+			fi
+			set_next_step
 		fi
-		set_next_step
-	fi
-done
+	done
+fi
 
 # Last Step: Hardlink-Copy 2 to 1
-if [ $CURRENTSTEP -eq $BACKUPCOUNT ]; then
-	if [ -d backup_2 ]; then
-		cp -al backup_2 backup_1
-	else
-		mkdir backup_1
+if [ "$CURRENTSTEP" -eq "$BACKUPCOUNT" ]; then
+	if ! [ -d backup_1 ]; then
+		if [ -d backup_2 ]; then
+			cp -al backup_2 backup_1
+		else
+			mkdir backup_1
+		fi
 	fi
 	set_next_step
 fi

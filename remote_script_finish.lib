@@ -4,7 +4,7 @@ if [ ! -d "$BACKUPDIR" ]; then
 	exit 99
 fi
 
-cd "$BACKUPDIR"
+cd "$BACKUPDIR" || exit 1
 
 # Show statistics
 du -sh --time backup_[0-9]*
