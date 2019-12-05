@@ -1,11 +1,11 @@
 # backup_to_ssh
 My push backup script inspired by rsnapshot
 
-I wrote it because I did not found a way to initiate the rsnapshot from client to the server.
-rsnapshot way is to collect backups from clients that does not work as cron job for me because my client is offline most times.
-rsnapshot on client requires mounted server directory, and the incremental overhead is slow.
+I wrote this scripts because I did not found a way to initiate the rsnapshot from client to the server.
+rsnapshot way is to collect backups initiated server-site. That does not work for me since my client is offline most times if the cron job does run in server.
+If rsnapshot runs on client the server directory needs to be mounted, and the incremental comarsion overhead is slow because comparing is done on client this way.
 
-This script does initial some magic on server trough ssh connection, then do the rsync, and get some statistics trough ssh again.
+backup_to_ssh does initial some magic on server trough ssh connection, then do the rsync, and get some statistics trough ssh again.
 
 # How to use - All on client
 ## setup the backup.conf (see backup.conf.example)
@@ -75,10 +75,10 @@ BACKUP_DIRS_LIST=(
 ```
 
 ## Call the do_backup_ssh.sh script
-To avoid password request I recomend to set up SSH-Keys authentification
+To be able to run the script as cron job in background the SSH-Keys authentification should be set up.
 The script is designed to run from client on cron.daily basis (using anacron)
 
 Result on Server:
-On server you get the $BACKUPDIR/backup_* subdirectories with hard-linked full backups like rsnapshot does it, up to BACKUPCOUNT copies.
+On server you get the $BACKUPDIR/backup_* subdirectories with hard-linked full backups up to BACKUPCOUNT copies. It is the same way as rsnapshot does. For data restore just copy files you need from the backup subdirectory.
 
 For newbies: Each of the dirs contains all files, but unchanged files consume the space once because of hardlink.
