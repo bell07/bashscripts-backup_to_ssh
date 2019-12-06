@@ -6,11 +6,11 @@ fi
 
 cd "$BACKUPDIR" || exit 1
 
+# Remove lock file for next backup
+rm "$BACKUPSTATEFILE" || exit 1
+
 # Show statistics
 du -sh --time backup_[0-9]*
-
-# Remove lock file for next backup
-rm "$BACKUPSTATEFILE"
 
 # All steps done!
 exit 0
