@@ -21,7 +21,7 @@ cd "$BACKUPDIR" || exit 1
 # Step 1: delete last backup (6)
 if [ "$CURRENTSTEP" -eq 0 ]; then
 	if [ -d backup_"$BACKUPCOUNT" ]; then
-		rm -Rf backup_"$BACKUPCOUNT"
+		mv backup_"$BACKUPCOUNT" backup_expired
 	fi
 	set_next_step
 fi
@@ -40,12 +40,13 @@ fi
 
 # Last Step: Hardlink-Copy 2 to 1
 if [ "$CURRENTSTEP" -eq "$BACKUPCOUNT" ]; then
-	if ! [ -d backup_1 ]; then
-		if [ -d backup_2 ]; then
-			cp -al backup_2 backup_1
-		else
-			mkdir backup_1
+	if [ -d backup_2 ]; then
+		if [ -d backup_expired ]; then
+			mv backup_expired backup_1
 		fi
+		cp -alf backup_2/. backup_1
+	else
+		mkdir backup_1
 	fi
 	set_next_step
 fi
