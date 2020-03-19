@@ -27,8 +27,10 @@
 /home/*/.minetest/debug.txt
 /home/*/Downloads
 /home/*/.gvfs
-
 /var/lib/mlocate
 /var/lib/systemd/coredump
 
+# Usually big disk images, should be backed up in other way
+/home/*/.VirtualBox/Machines
+/var/lib/docker
 
