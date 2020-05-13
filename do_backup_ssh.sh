@@ -39,8 +39,10 @@ cat "$BINDIR"/backup.conf "$BINDIR"/remote_script_prepare.lib | ssh -T "$BACKUPU
 retcode=$?
 if [ $retcode -eq 99 ]; then
 	echo "Remote execution cancelled"
+	exit 2
 elif [ $retcode -ne 0 ]; then
 	echo "Error connect backup host $retcode"
+	exit 3
 fi
 
 # Do sync
@@ -52,7 +54,7 @@ for dir in "${BACKUP_DIRS_LIST[@]}"; do
 	retcode=$?
 	if [ $retcode -ne 0 ]; then
 		echo "Error in backup of $dir"
-		exit 1
+		exit 4
 	fi
 done
 
@@ -61,7 +63,7 @@ cat "$BINDIR"/backup.conf "$BINDIR"/remote_script_finish.lib | ssh -T "$BACKUPUS
 retcode=$?
 if [ $retcode -eq 99 ]; then
 	echo "Something wrong on backup commit"
-	exit 1
+	exit 5
 fi
 
 exit 0
