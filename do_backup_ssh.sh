@@ -48,7 +48,7 @@ for dir in "${BACKUP_DIRS_LIST[@]}"; do
 	rsync $RSYNC_PARAM -a --delete --delete-excluded \
 			--numeric-ids --relative "$dir" \
 			--exclude-from="$BINDIR"/backup.exclude \
-			"$BACKUPUSER"@"$BACKUPHOST":"$BACKUPDIR"/backup_1
+			"$BACKUPUSER"@"$BACKUPHOST":"$BACKUPDIR"/backup_01
 	retcode=$?
 	if [ $retcode -ne 0 ]; then
 		echo "Error in backup of $dir"
