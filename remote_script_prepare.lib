@@ -49,7 +49,7 @@ if [ "$CURRENTSTEP" -eq "$BACKUPCOUNT" ]; then
 	BACKUP2="$(get_file_name 2)"
 	if [ -d "$BACKUP2" ]; then
 		if [ -d backup_expired ]; then
-			mv backup_expired "$BACKUP2"
+			mv backup_expired "$BACKUP1"
 		fi
 		cp -alf "$BACKUP2"/. "$BACKUP1"
 	else
