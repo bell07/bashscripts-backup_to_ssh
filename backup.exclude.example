@@ -17,7 +17,9 @@
 */[.][Tt]rash/*
 
 */[Ll]ogs/*
-*/[.][Llt]ogs/*
+*/[.][Ll]ogs/*
+*/*[.][Ll]og
+*/*[.][Ll]og[.-]*
 
 */ccache/*
 
