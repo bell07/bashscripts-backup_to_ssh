@@ -21,6 +21,8 @@
 */*[.][Ll]og
 */*[.][Ll]og[.-]*
 
+*/*[.]lock
+
 */ccache/*
 
 # By file
