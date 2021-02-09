@@ -51,7 +51,7 @@ if [ "$CURRENTSTEP" -eq "$BACKUPCOUNT" ]; then
 		if [ -d backup_expired ]; then
 			mv backup_expired "$BACKUP1"
 		fi
-		cp -alf "$BACKUP2"/. "$BACKUP1"
+		cp -alf "$BACKUP2"/. "$BACKUP1" 2> /dev/null
 	else
 		mkdir "$BACKUP1"
 	fi

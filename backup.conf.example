@@ -8,7 +8,7 @@ BACKUPHOST=backup_host
 BACKUPDIR=/mnt/usbdisk/backup/my_client
 
 # Your user on remote host
-BACKUPUSER=root
+BACKUPUSER=backup
 
 # Statefile on server to resume processing if interrupted
 BACKUPSTATEFILE="$BACKUPDIR"/"backup_state.tmp"
@@ -19,6 +19,9 @@ BACKUPCOUNT=7
 ## Additional parameters for rsync command
 #RSYNC_PARAM="-zc"  # Compress + full check by checksum
 RSYNC_PARAM="-z"    # Compress + default quick check
+
+## Output disk usage statistics after sync (Maybe time consuming)
+POST_BACKUP_STAT=YES
 
 ## Backup local dirs are backed up
 ## Note, some subdirs could be excluded in exclude file

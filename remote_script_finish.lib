@@ -9,8 +9,11 @@ cd "$BACKUPDIR" || exit 1
 # Remove lock file for next backup
 rm "$BACKUPSTATEFILE" || exit 1
 
-# Show statistics
-du -sh --time backup_[0-9]*
+## Show statistics
+if [ "$POST_BACKUP_STAT" == "YES" ]; then
+	echo "$(date): Print statistics"
+	du -sh --time backup_[0-9]*
+fi
 
 # All steps done!
 exit 0

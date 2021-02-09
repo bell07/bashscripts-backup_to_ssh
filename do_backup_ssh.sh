@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BINDIR="$(dirname "$0")"
+BINDIR="$(dirname "$(readlink -f "$0")")"
 source "$BINDIR"/backup.conf
 
 # Check configuration
@@ -34,6 +34,8 @@ if [ -z "$BACKUP_DIRS_LIST" ]; then
 	exit 1
 fi
 
+echo "$(date): Start remote preparation moves"
+
 # Prepare destination
 cat "$BINDIR"/backup.conf "$BINDIR"/remote_script_prepare.lib | ssh -T "$BACKUPUSER"@"$BACKUPHOST"
 retcode=$?
@@ -47,6 +49,7 @@ fi
 
 # Do sync
 for dir in "${BACKUP_DIRS_LIST[@]}"; do
+	echo "$(date): Sync $dir"
 	rsync $RSYNC_PARAM -a --delete --delete-excluded \
 			--numeric-ids --relative "$dir" \
 			--exclude-from="$BINDIR"/backup.exclude \
@@ -58,7 +61,7 @@ for dir in "${BACKUP_DIRS_LIST[@]}"; do
 	fi
 done
 
-
+echo "$(date): Execute finish script"
 cat "$BINDIR"/backup.conf "$BINDIR"/remote_script_finish.lib | ssh -T "$BACKUPUSER"@"$BACKUPHOST"
 retcode=$?
 if [ $retcode -eq 99 ]; then
@@ -66,4 +69,5 @@ if [ $retcode -eq 99 ]; then
 	exit 5
 fi
 
+echo "$(date): Finish"
 exit 0
