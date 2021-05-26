@@ -47,12 +47,19 @@ elif [ $retcode -ne 0 ]; then
 	exit 3
 fi
 
+# Build up excluded files list
+EXCLUDED_PARAM=("--exclude-from=$BINDIR"/backup.exclude.defaults)
+
+for file in "${RSYNC_EXCLUDE_FILES[@]}"; do
+	EXCLUDED_PARAM+=("--exclude-from=$file")
+done
+
 # Do sync
 for dir in "${BACKUP_DIRS_LIST[@]}"; do
 	echo "$(date): Sync $dir"
 	rsync $RSYNC_PARAM -a --delete --delete-excluded \
 			--numeric-ids --relative "$dir" \
-			--exclude-from="$BINDIR"/backup.exclude \
+			${EXCLUDED_PARAM[@]} \
 			"$BACKUPUSER"@"$BACKUPHOST":"$BACKUPDIR"/backup_01
 	retcode=$?
 	if [ $retcode -ne 0 ]; then

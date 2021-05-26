@@ -20,6 +20,13 @@ BACKUPCOUNT=7
 #RSYNC_PARAM="-zc"  # Compress + full check by checksum
 RSYNC_PARAM="-z"    # Compress + default quick check
 
+## Exclude files are now configureable
+# "$BINDIR"/backup.exclude.defaults is hard-coded by default
+# Additional settings can be set in backup.exclude
+RSYNC_EXCLUDE_FILES=(
+	"$BINDIR"/backup.exclude
+)
+
 ## Output disk usage statistics after sync (Maybe time consuming)
 POST_BACKUP_STAT=YES
 
