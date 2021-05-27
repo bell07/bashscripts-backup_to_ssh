@@ -24,6 +24,7 @@ RSYNC_PARAM="-z"    # Compress + default quick check
 # "$BINDIR"/backup.exclude.defaults is hard-coded by default
 # Additional settings can be set in backup.exclude
 RSYNC_EXCLUDE_FILES=(
+	"$BINDIR"/3rdparty/rsync-homedir-excludes-converted
 	"$BINDIR"/backup.exclude
 )
 

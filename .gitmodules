@@ -1,0 +1,3 @@
+[submodule "3rdparty/rsync-homedir-excludes"]
+	path = 3rdparty/rsync-homedir-excludes
+	url = https://github.com/rubo77/rsync-homedir-excludes

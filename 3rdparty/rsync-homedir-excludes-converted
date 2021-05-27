@@ -1,0 +1,400 @@
+# rsync-homedir-excludes
+#
+# A list of files to exclude when backing up *nix home directories using rsync.
+#
+# Author: Ruben Barkow-Kuder <https://github.com/rubo77/rsync-homedir-excludes>
+# Version: 2019-11-30
+#
+# #Usage:
+#    USER=<homedir username here>
+#    rsync -aP --exclude-from=rsync-homedir-excludes.txt /home/$USER/ /media/$USER/linuxbackup/home/$USER/
+
+
+###############################################
+# directories, probably not worth a backup    #
+# (uncomment the files you don't need)        #
+###############################################
+
+#.android
+#.AndroidStudio*/
+#Android/Sdk
+#.gradle
+#.gvm
+#.grails/
+#.grails_history
+#.kde/share/apps/nepomuk
+#.local/share/notbit
+#.local/libvirt
+#.local/share/libvirt
+#.vagrant
+#.vagrant.d
+#.wine
+#.twister
+#/twister
+#Applications/eclipse*
+#/Downloads
+#*Popcorntime*
+#/.aMule
+#/Scribus
+#/VirtualBox*
+#/Nextcloud
+#_build
+#
+## Ruby gems
+#.rvm
+#
+## Add Game Folders here:
+#
+#/games
+#.local/share/Steam
+#.steam
+#/Steam
+#.minecraft
+#.technic
+#.PlayOnLinux
+#.local/share/lutris/runners/wine/
+#
+## Spotify
+#.config/spotify/Users
+#
+## those folders contain only temporary Videos I want to watch
+#/Videos
+#/Movies
+#
+## some history files
+#.python_history
+#.bash_history
+#.zsh_history
+#.mysql_history
+#
+## Python eggs
+#.local/lib/python*
+#
+## Python virtual environments
+#PycharmProjects/**/venv
+#
+## Maven local repository
+#/.m2
+#
+## Unlocked Plasma Vaults
+#/Vaults
+
+################################################
+# These directories may definitely be excluded #
+################################################
+
+# Contains mounted file systems:
+
+/home/*/.gvfs
+/home/*/.local/share/gvfs-metadata
+# contains the actual encrypted home directory
+/home/*/.Private
+
+# Session-specific:
+/home/*/.dbus
+/home/*/.cache
+/home/*/.Trash
+/home/*/.Trash-1*
+/home/*/.local/share/Trash
+/home/*/Trash
+
+# Cached info about audio CDs:
+/home/*/.cddb
+
+# Cached packages lists:
+/home/*/.aptitude
+
+# Node Package Manager cache
+/home/*/.npm
+
+# Node Version Manager
+/home/*/.nvm
+
+#Flash-specific:
+
+# Cache for flash, maybe others?
+/home/*/.adobe
+# except for Flash persistence, there is no reason to keep this
+/home/*/.macromedia
+
+#Files:
+
+# Contains errors from the current graphical session
+/home/*/.xsession-errors
+/home/*/.wayland-errors
+
+# Recently used files
+/home/*/.local/share/RecentDocuments
+/home/*/.recently-used
+/home/*/.recently-used.xbel
+/home/*/recently-used.xbel
+/home/*/.thumbnails
+/home/*/.thumb
+/home/*/Thumbs.db
+/home/*/.DS_Store
+/home/*/.localised
+/home/*/.CFUserTextEncoding
+/home/*/.zcompdump*
+/home/*/.wget-hsts
+
+# Common Unix Printing System
+/home/*/.cups
+
+# run-time configuration information for Subversion
+/home/*/.subversion
+
+# Python virtual environments
+/home/*/.virtualenvs
+
+# Session-specific
+/home/*/.Xauthority
+/home/*/.ICEauthority
+/home/*/.gksu.lock
+/home/*/.pulse
+/home/*/.pulse-cookie
+/home/*/.esd_auth
+
+#KDE specific:
+
+# Recent documents on KDE
+/home/*/.kde/share/apps/RecentDocuments
+/home/*/.kde4/share/apps/RecentDocuments
+# Contains a history of the Klipper clipboard (KDE)
+/home/*/.kde/share/apps/klipper
+/home/*/.kde4/share/apps/klipper
+/home/*/.local/share/klipper
+# You will loose saved scrolling positions of PDFs
+/home/*/.kde/share/apps/okular/docdata
+/home/*/.kde/share/apps/gwenview/recentfolders
+/home/*/.kde4/share/apps/okular/docdata
+/home/*/.kde4/share/apps/gwenview/recentfolders
+/home/*/.local/share/okular/docdata
+/home/*/.local/share/org.kde.gwenview/recentfolders
+# Cached other users' profile pics
+/home/*/.kde/share/apps/kmess/displaypics
+/home/*/.kde4/share/apps/kmess/displaypics
+# Cached emoticons of others
+/home/*/.kde/share/apps/kmess/customemoticons
+/home/*/.kde4/share/apps/kmess/customemoticons
+
+#Gnome specific:
+
+# tracker data files
+/home/*/.local/share/tracker
+
+#Tor Browser supposed to not be backupped ;)
+/home/*/.local/share/torbrowser
+
+#Firefox-specific (see also Profile folder):
+
+/home/*/.mozilla/firefox/*/Cache
+# in case Fx crashes dumps will be stored in this
+/home/*/.mozilla/firefox/*/minidumps
+# session-specific
+/home/*/.mozilla/firefox/*/.parentlock
+# phishing database, recreated
+/home/*/.mozilla/firefox/*/urlclassifier3.sqlite
+# blacklisted extensions
+/home/*/.mozilla/firefox/*/blocklist.xml
+# extension database, recreated on startup
+/home/*/.mozilla/firefox/*/extensions.sqlite
+/home/*/.mozilla/firefox/*/extensions.sqlite-journal
+/home/*/.mozilla/firefox/*/extensions.rdf
+/home/*/.mozilla/firefox/*/extensions.ini
+/home/*/.mozilla/firefox/*/extensions.cache
+# cached UI data, recreated
+/home/*/.mozilla/firefox/*/XUL.mfasl
+/home/*/.mozilla/firefox/*/XPC.mfasl
+/home/*/.mozilla/firefox/*/xpti.dat
+/home/*/.mozilla/firefox/*/compreg.dat
+# cached plugin data, recreated
+/home/*/.mozilla/firefox/*/pluginreg.dat
+
+#SeaMonkey-specific (see also Profile folder):
+
+/home/*/.mozilla/seamonkey/*/Cache
+# in case Fx crashes dumps will be stored in this
+/home/*/.mozilla/seamonkey/*/minidumps
+# session-specific
+/home/*/.mozilla/seamonkey/*/.parentlock
+# blacklisted extensions
+/home/*/.mozilla/seamonkey/*/blocklist.xml
+# extension database, recreated on startup
+/home/*/.mozilla/seamonkey/*/extensions.sqlite
+/home/*/.mozilla/seamonkey/*/extensions.rdf
+/home/*/.mozilla/seamonkey/*/extensions.ini
+# cached UI data, recreated
+/home/*/.mozilla/seamonkey/*/xpti.dat
+/home/*/.mozilla/seamonkey/*/compreg.dat
+# cached plugin data, recreated
+/home/*/.mozilla/seamonkey/*/pluginreg.dat
+
+# Thunderbird Cache in your profile folder
+/home/*/.thunderbird/*/Cache
+
+#Opera-specific (related question on Superuser.com: Is documentation available on files and directories in the Opera profile folder?):
+
+/home/*/.opera/temporary_downloads
+/home/*/.opera/cache
+/home/*/.opera/thumbnails
+/home/*/.opera/opcache
+/home/*/.opera/icons
+/home/*/.opera/application_cache
+/home/*/.opera/widgets/*/cache
+/home/*/.opera/lock
+
+# Keychain dir (manage SSH and GPG keys, front-end to ssh-agent and ssh-add)
+/home/*/.keychain
+
+#Komodo Edit:
+
+/home/*/.komodoedit/*/codeintel/db
+/home/*/.komodoedit/*/host-*/*/codeintel
+/home/*/.komodoedit/*/XRE/Cache
+/home/*/.komodoedit/*/XRE/.activatestate/komodo edit/Crash Reports
+/home/*/.komodoedit/*/XRE/.activatestate/komodo edit/*/Cache
+/home/*/.komodoedit/*/XRE/.activatestate/komodo edit/*/minidump
+/home/*/.komodoedit/*/XRE/.parentlock
+/home/*/.komodoedit/*/XRE/extensions.rdf
+/home/*/.komodoedit/*/XRE/extensions.ini
+/home/*/.komodoedit/*/XRE/extensions.cache
+/home/*/.komodoedit/*/XRE/XPC.mfasl
+/home/*/.komodoedit/*/XRE/XUL.mfasl
+/home/*/.komodoedit/*/XRE/xpti.dat
+/home/*/.komodoedit/*/XRE/pluginreg.dat
+/home/*/.komodoedit/*/XRE/compreg.dat
+/home/*/.komodoedit/*/XRE/*.sqlite-journal
+/home/*/.komodoedit/*/pystdout.log
+/home/*/.komodoedit/*/pystderr.log
+/home/*/.komodoedit/*/history.sqlite.bak
+/home/*/.komodoedit/*/running.lock
+/home/*/.komodoedit/*/mutex.lock
+/home/*/.komodoedit/*/*.xmlc
+/home/*/.komodoedit/*/startup-env.tmp
+/home/*/.komodoedit/*/commandments.fifo
+/home/*/.komodoedit/*/history.sqlite
+
+#GnuPG:
+
+/home/*/.gnupg/rnd
+/home/*/.gnupg/random_seed
+/home/*/.gnupg/.#*
+/home/*/.gnupg/*.lock
+/home/*/.gnupg/gpg-agent-info-*
+
+#Google Earth:
+/home/*/.googleearth/Temp
+/home/*/.googleearth/Cache
+
+#Google Chrome:
+
+/home/*/.config/google-chrome/ShaderCache
+/home/*/.config/google-chrome/Default/Local Storage
+/home/*/.config/google-chrome/Default/Session Storage
+/home/*/.config/google-chrome/Default/Application Cache
+/home/*/.config/google-chrome/Default/History Index *
+/home/*/.config/google-chrome/Default/Service Worker/CacheStorage
+
+#Chromium:
+
+/home/*/.config/chromium/Default/Local Storage
+/home/*/.config/chromium/Default/Session Storage
+/home/*/.config/chromium/Default/Application Cache
+/home/*/.config/chromium/Default/History Index *
+/home/*/snap/chromium/common/.cache
+/home/*/snap/chromium/*/.config/chromium/Default/Service Worker/CacheStorage
+/home/*/snap/chromium/*/.local/share/
+
+#Riot
+/home/*/snap/riot-web/
+
+#Brave
+/home/*/.config/BraveSoftware/Brave-Browser/Default/Feature Engagement Tracker/
+/home/*/.config/BraveSoftware/Brave-Browser/Default/Local Storage/
+/home/*/.config/BraveSoftware/Brave-Browser/Default/Service Worker/CacheStorage/
+/home/*/.config/BraveSoftware/Brave-Browser/Default/Session Storage/
+/home/*/.config/BraveSoftware/Brave-Browser/Safe Browsing/
+/home/*/.config/BraveSoftware/Brave-Browser/ShaderCache/
+
+#Local repositories:
+/home/*/.gradle/caches
+/home/*/.m2/repository
+
+#indexer
+/home/*/.local/share/baloo
+/home/*/.local/share/zeitgeist
+/home/*/.local/share/akonadi
+
+#Other apps:
+
+# Pidgin
+/home/*/.purple/icons
+# Cached applets
+/home/*/.guayadeque/cache.db
+/home/*/.java/deployment/cache
+/home/*/.icedteaplugin
+/home/*/.icedtea
+/home/*/.gnome2/epiphany/favicon_cache
+
+# other temporary files
+/home/*/nohup.out
+
+# LibreOffice cache files
+/home/*/.config/libreoffice/4/cache
+
+# freshplayerplugin LSO
+/home/*/.config/freshwrapper-data/Shockwave Flash/WritableRoot/#SharedObjects
+
+# Snap caches
+/home/*/.config/*/Cache
+
+# Atom
+/home/*/.config/Atom/*Cache
+/home/*/.config/Atom/IndexedDB
+/home/*/.atom/compile-cache/
+
+# Vim
+/home/*/.vim/bundle/*
+/home/*/.viminfo
+
+# VS Code
+/home/*/.vscode-oss/extensions/*
+/home/*/.vscode/extensions/*
+/home/*/.config/Code - OSS/blob_storage/
+/home/*/.config/Code - OSS/GPUCache/
+/home/*/.config/Code - OSS/logs/
+/home/*/.config/Code/blob_storage/
+/home/*/.config/Code/GPUCache/
+/home/*/.config/Code/logs/
+
+# MS Teams
+/home/*/.config/Microsoft/Microsoft Teams/Application Cache
+/home/*/.config/Microsoft/Microsoft Teams/Cache
+/home/*/.config/Microsoft/Microsoft Teams/GPUCache
+
+# VirtualBox
+/home/*/.config/VirtualBox/VBoxSVC.log*
+/home/*/.config/VirtualBox/VBoxGuestAdditions_*
+
+# Rust artefacts
+/home/*/.cargo
+/home/*/.rustup
+
+# Erlang artefacts
+/home/*/.kerl
+
+# golang Cache
+/home/*/go/pkg/mod/cache
+
+# ccache, remove cache but keep config
+/home/*/.ccache/?
+/home/*/.ccache/tmp
+
+# Nvidia OpenGL Shader Cache
+/home/*/.nv/GLCache
+
+# Citrix ICA Client
+/home/*/.ICAClient/logs
+/home/*/.ICAClient/.tmp
+/home/*/.ICAClient/cache/zlcache
+
