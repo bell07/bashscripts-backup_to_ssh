@@ -370,6 +370,7 @@
 # MS Teams
 /home/*/.config/Microsoft/Microsoft Teams/Application Cache
 /home/*/.config/Microsoft/Microsoft Teams/Cache
+/home/*/.config/Microsoft/Microsoft Teams/Code Cache
 /home/*/.config/Microsoft/Microsoft Teams/GPUCache
 
 # VirtualBox
@@ -398,3 +399,5 @@
 /home/*/.ICAClient/.tmp
 /home/*/.ICAClient/cache/zlcache
 
+# Geany IDE - socket file
+/home/*/.config/geany/geany_socket_*
