@@ -289,30 +289,30 @@
 #Google Chrome:
 
 /home/*/.config/google-chrome/ShaderCache
-/home/*/.config/google-chrome/Default/Local Storage
-/home/*/.config/google-chrome/Default/Session Storage
-/home/*/.config/google-chrome/Default/Application Cache
-/home/*/.config/google-chrome/Default/History Index *
-/home/*/.config/google-chrome/Default/Service Worker/CacheStorage
+/home/*/.config/google-chrome/*/Local Storage
+/home/*/.config/google-chrome/*/Session Storage
+/home/*/.config/google-chrome/*/Application Cache
+/home/*/.config/google-chrome/*/History Index *
+/home/*/.config/google-chrome/*/Service Worker/CacheStorage
 
 #Chromium:
 
-/home/*/.config/chromium/Default/Local Storage
-/home/*/.config/chromium/Default/Session Storage
-/home/*/.config/chromium/Default/Application Cache
-/home/*/.config/chromium/Default/History Index *
+/home/*/.config/chromium/*/Local Storage
+/home/*/.config/chromium/*/Session Storage
+/home/*/.config/chromium/*/Application Cache
+/home/*/.config/chromium/*/History Index *
 /home/*/snap/chromium/common/.cache
-/home/*/snap/chromium/*/.config/chromium/Default/Service Worker/CacheStorage
+/home/*/snap/chromium/*/.config/chromium/*/Service Worker/CacheStorage
 /home/*/snap/chromium/*/.local/share/
 
 #Riot
 /home/*/snap/riot-web/
 
 #Brave
-/home/*/.config/BraveSoftware/Brave-Browser/Default/Feature Engagement Tracker/
-/home/*/.config/BraveSoftware/Brave-Browser/Default/Local Storage/
-/home/*/.config/BraveSoftware/Brave-Browser/Default/Service Worker/CacheStorage/
-/home/*/.config/BraveSoftware/Brave-Browser/Default/Session Storage/
+/home/*/.config/BraveSoftware/Brave-Browser/*/Feature Engagement Tracker/
+/home/*/.config/BraveSoftware/Brave-Browser/*/Local Storage/
+/home/*/.config/BraveSoftware/Brave-Browser/*/Service Worker/CacheStorage/
+/home/*/.config/BraveSoftware/Brave-Browser/*/Session Storage/
 /home/*/.config/BraveSoftware/Brave-Browser/Safe Browsing/
 /home/*/.config/BraveSoftware/Brave-Browser/ShaderCache/
 
@@ -401,3 +401,7 @@
 
 # Geany IDE - socket file
 /home/*/.config/geany/geany_socket_*
+
+# LBRY
+/home/*/.config/lbry
+/home/*/.local/share/lbry/lbrynet
