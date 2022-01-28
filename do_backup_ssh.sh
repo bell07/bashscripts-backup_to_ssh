@@ -58,7 +58,7 @@ done
 for dir in "${BACKUP_DIRS_LIST[@]}"; do
 	echo "$(date): Sync $dir"
 	rsync $RSYNC_PARAM -a --delete --delete-excluded \
-			--numeric-ids --relative "$dir" \
+			--whole-file --numeric-ids --relative "$dir" \
 			${EXCLUDED_PARAM[@]} \
 			"$BACKUPUSER"@"$BACKUPHOST":"$BACKUPDIR"/backup_01
 	retcode=$?
