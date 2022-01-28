@@ -37,6 +37,7 @@
 #/.aMule
 #/Scribus
 #/VirtualBox*
+#.local/share/gnome-boxes/images
 #/Nextcloud
 #_build
 #
@@ -47,6 +48,7 @@
 #
 #/games
 #.local/share/Steam
+#.var/app/com.valvesoftware.Steam/.local/share/Steam
 #.steam
 #/Steam
 #.minecraft
@@ -56,6 +58,7 @@
 #
 ## Spotify
 #.config/spotify/Users
+#.var/app/com.spotify.Client/config/spotify/Users
 #
 ## those folders contain only temporary Videos I want to watch
 #/Videos
@@ -78,6 +81,9 @@
 #
 ## Unlocked Plasma Vaults
 #/Vaults
+## Docker
+#.docker/machine
+#.local/share/containers
 
 ################################################
 # These directories may definitely be excluded #
@@ -93,6 +99,8 @@
 # Session-specific:
 /home/*/.dbus
 /home/*/.cache
+/home/*/.var/app/*/cache
+/home/*/.var/app/*/.cache
 /home/*/.Trash
 /home/*/.Trash-1*
 /home/*/.local/share/Trash
@@ -121,6 +129,7 @@
 
 # Contains errors from the current graphical session
 /home/*/.xsession-errors
+/home/*/.xsession-errors.old
 /home/*/.wayland-errors
 
 # Recently used files
@@ -299,6 +308,7 @@
 
 /home/*/.config/chromium/*/Local Storage
 /home/*/.config/chromium/*/Session Storage
+/home/*/.config/chromium/*/Service Worker/CacheStorage
 /home/*/.config/chromium/*/Application Cache
 /home/*/.config/chromium/*/History Index *
 /home/*/snap/chromium/common/.cache
@@ -360,18 +370,11 @@
 # VS Code
 /home/*/.vscode-oss/extensions/*
 /home/*/.vscode/extensions/*
-/home/*/.config/Code - OSS/blob_storage/
-/home/*/.config/Code - OSS/GPUCache/
 /home/*/.config/Code - OSS/logs/
-/home/*/.config/Code/blob_storage/
-/home/*/.config/Code/GPUCache/
 /home/*/.config/Code/logs/
 
-# MS Teams
-/home/*/.config/Microsoft/Microsoft Teams/Application Cache
-/home/*/.config/Microsoft/Microsoft Teams/Cache
-/home/*/.config/Microsoft/Microsoft Teams/Code Cache
-/home/*/.config/Microsoft/Microsoft Teams/GPUCache
+# VS Codium
+/home/*/.config/VSCodium/CachedExtensionVSIXs
 
 # VirtualBox
 /home/*/.config/VirtualBox/VBoxSVC.log*
@@ -405,3 +408,18 @@
 # LBRY
 /home/*/.config/lbry
 /home/*/.local/share/lbry/lbrynet
+
+# Electron Apps
+/home/*/.config/*/blob_storage
+/home/*/.config/*/Application Cache
+/home/*/.config/*/Cache
+/home/*/.config/*/CachedData
+/home/*/.config/*/Code Cache
+/home/*/.config/*/GPUCache
+/home/*/.var/app/**/blob_storage
+/home/*/.var/app/**/Application Cache
+/home/*/.var/app/**/Cache
+/home/*/.var/app/**/CachedData
+/home/*/.var/app/**/Code Cache
+/home/*/.var/app/**/GPUCache
+
