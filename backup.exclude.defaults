@@ -26,7 +26,6 @@
 */ccache/*
 
 # By file
-/home/*/.ccache/
 /home/*/.config/syncthing/
 /home/*/.minetest/debug.txt
 /home/*/Downloads
