@@ -372,6 +372,7 @@
 /home/*/.vscode/extensions/*
 /home/*/.config/Code - OSS/logs/
 /home/*/.config/Code/logs/
+/home/*/.config/Code/CachedData/*
 
 # VS Codium
 /home/*/.config/VSCodium/CachedExtensionVSIXs
