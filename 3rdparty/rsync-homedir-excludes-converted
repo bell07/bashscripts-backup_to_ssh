@@ -427,4 +427,4 @@
 /home/*/.var/app/**/Service Worker/CacheStorage
 
 # SC-Controller - socket file
-/home/*/.config/scc/.daemon.socket.*
+/home/*/.config/scc/daemon.socket
