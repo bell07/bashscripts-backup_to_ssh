@@ -163,6 +163,9 @@
 /home/*/.pulse-cookie
 /home/*/.esd_auth
 
+# Lock / Pid files
+/home/*/.VeraCrypt-lock-*
+
 #KDE specific:
 
 # Recent documents on KDE
