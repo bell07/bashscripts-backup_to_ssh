@@ -306,6 +306,7 @@
 /home/*/.config/google-chrome/*/Application Cache
 /home/*/.config/google-chrome/*/History Index *
 /home/*/.config/google-chrome/*/Service Worker/CacheStorage
+/home/*/.config/google-chrome/*/WebStorage/*/CacheStorage
 
 #Chromium:
 
