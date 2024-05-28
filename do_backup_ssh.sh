@@ -34,6 +34,11 @@ if [ -z "$BACKUP_DIRS_LIST" ]; then
 	exit 1
 fi
 
+if ! ping -q -c 1 "$BACKUPHOST" > /dev/null; then
+	echo "Backup host not reacheable"
+	exit 1
+fi
+
 echo "$(date): Start remote preparation moves"
 
 # Prepare destination
@@ -62,8 +67,10 @@ for dir in "${BACKUP_DIRS_LIST[@]}"; do
 			${EXCLUDED_PARAM[@]} \
 			"$BACKUPUSER"@"$BACKUPHOST":"$BACKUPDIR"/backup_01
 	retcode=$?
-	if [ $retcode -ne 0 ]; then
-		echo "Error in backup of $dir"
+	if [ $retcode -eq 24 ]; then
+		echo "Ignore vanished files warning"
+	elif [ $retcode -ne 0 ]; then
+		echo "Error $retcode in backup of $dir"
 		exit 4
 	fi
 done
