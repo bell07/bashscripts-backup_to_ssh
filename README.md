@@ -1,4 +1,38 @@
+**Archived Info!**
+
+I switched to [restic](https://github.com/restic/restic) now.
+Restic does the same (backup initiated from client to server) but with client-site encryption and many other features.
+For restoring data from backup an graphical tool [restic-browser](https://github.com/emuell/restic-browser) exists.
+The exclude file is compatible.
+
+Try it out:
+
+```
+#!/bin/sh
+RESTIC_REPO="sftp:backup-user@backup-host:/mnt/usbdisk/backup/my_client"
+
+BACKUP_DIRS_LIST=(
+	/boot
+	/etc
+	/home
+	/usr/local
+	/var/lib
+	/scripts
+	/var/db/pkg
+)
+
+restic -r "$RESTIC_REPO" backup --verbose \
+  --exclude-file="/scripts/backup_to_ssh/backup.exclude" --exclude-caches \
+  --one-file-system ${BACKUP_DIRS_LIST[@]}
+restic -r "$RESTIC_REPO" forget --verbose \
+  --keep-last 10 --keep-daily 30 --keep-weekly 50 --keep-monthly 12 --prune
+```
+Of course, the backup password needs to be in `--password-file` to get backups in cron jobs.
+
+**Archived Info end**
+
 # backup_to_ssh
+
 My push backup script inspired by rsnapshot
 
 I wrote this scripts because I did not found a way to initiate the rsnapshot from client to the server.
